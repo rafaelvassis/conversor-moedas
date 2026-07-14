@@ -1,0 +1,17 @@
+.card__container {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    gap: .5rem;
+}
+
+.label__output {
+    font-weight: bold;
+    border-bottom: 2px solid;
+}
+
+.text__output {
+    color: navy;
+    background-color: rgb(254, 246, 235);
+}
