@@ -1,5 +1,5 @@
-form {
-  font-size: px;
+.converter-form {
+  font-size: 16px;
   border: 1px solid black;
   display: flex;
   flex-direction: column;
@@ -8,18 +8,27 @@ form {
   align-items: start;
 }
 
-.form__row {
+.converter-form__group {
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
 }
 
-button {
+.converter-form__swap-btn,
+.converter-form__submit-btn {
   align-self: center;
   font-size: 16px;
-  padding: 0.5rem;
-  border-radius: 10%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
   background-color: olive;
   color: white;
   font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.converter-form__swap-btn:hover,
+.converter-form__submit-btn:hover {
+  background-color: darkolivegreen;
 }
