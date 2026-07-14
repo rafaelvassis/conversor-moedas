@@ -5,15 +5,29 @@ export default function ConverterForm() {
     <form>
       <div className="form__row">
         <label htmlFor="Source-Amount">Valor</label>
-        <input type="text" id="Source-Amount" name="Source-Amount" />
+        <input
+          type="number"
+          min="0"
+          step="0.01"
+          id="Source-Amount"
+          name="Source-Amount"
+        />
       </div>
       <div className="form__row">
         <label htmlFor="Base-Currency">De: </label>
-        <input type="text" id="Base-Currency" name="Base-Currency" />
+        <select>
+          <option>USD</option>
+          <option>BRL</option>
+          <option>EUR</option>
+        </select>
       </div>
       <div className="form__row">
         <label htmlFor="Quote-Currency">Para: </label>
-        <input type="text" id="Quote-Currency" name="Quote-Currency" />
+        <select>
+          <option>USD</option>
+          <option>BRL</option>
+          <option>EUR</option>
+        </select>
       </div>
       <button>Converter</button>
     </form>
