@@ -28,7 +28,7 @@ function App() {
         setExchangeRate={setExchangeRate}
         setError={setError}
       />
-      {error ? <FeedbackMessage message={error} /> : ""}
+      {error && <FeedbackMessage message={error} />}
       <ResultCard
         amount={amount}
         sourceCurrency={sourceCurrency}
