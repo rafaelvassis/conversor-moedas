@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { convertCurrency } from "../../services/exchangeApi";
 import type { ExchangeRateResponse } from "../../types/ExchangeRate";
 import "./ConverterForm.css";
@@ -11,6 +12,7 @@ type ConverterFormProps = {
   setTargetCurrency: (s: string) => void;
   setExchangeRate: (r: ExchangeRateResponse) => void;
   setError: (err: string | null) => void;
+  error: string | null;
 };
 
 export default function ConverterForm({
@@ -22,7 +24,10 @@ export default function ConverterForm({
   setTargetCurrency,
   setExchangeRate,
   setError,
+  error,
 }: ConverterFormProps) {
+  const [isLoading, setIsLoading] = useState(false);
+
   function handleSwapCurrencies(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     const currentSource = sourceCurrency;
@@ -38,6 +43,8 @@ export default function ConverterForm({
       return;
     }
 
+    setIsLoading(true);
+
     try {
       const data: ExchangeRateResponse = await convertCurrency(
         sourceCurrency,
@@ -47,7 +54,10 @@ export default function ConverterForm({
       setExchangeRate(data);
       setError(null);
     } catch {
+      console.error(error);
       setError("Não foi possível obter a cotação. Tente novamente.");
+    } finally {
+      setIsLoading(false);
     }
   }
 
