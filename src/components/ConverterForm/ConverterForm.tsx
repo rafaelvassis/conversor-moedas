@@ -1,45 +1,75 @@
-import "./ConverterForm.css";
+import { useState } from "react";
 
 export default function ConverterForm() {
-  function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
+  const [amount, setAmount] = useState<number>(0);
+  const [sourceCurrency, setSourceCurrency] = useState<string>("USD");
+  const [targetCurrency, setTargetCurrency] = useState<string>("BRL");
+
+  function handleSwapCurrencies(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
-    console.log("clicou em trocar");
+    setSourceCurrency(targetCurrency);
+    setTargetCurrency(sourceCurrency);
   }
 
-  function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
+  function handleConvert(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log("clicou em converter");
+    console.log(
+      `Convertendo ${amount} de ${sourceCurrency} para ${targetCurrency}`,
+    );
   }
+
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="form__row">
-        <label htmlFor="Source-Amount">Valor</label>
+    <form className="converter-form" onSubmit={handleConvert}>
+      <div className="converter-form__group">
+        <label htmlFor="sourceAmount">Valor</label>
         <input
           type="number"
           min="0"
           step="0.01"
-          id="Source-Amount"
-          name="Source-Amount"
+          id="sourceAmount"
+          name="sourceAmount"
+          value={amount}
+          onChange={(e) => setAmount(Number(e.target.value))}
         />
       </div>
-      <div className="form__row">
-        <label htmlFor="Base-Currency">De: </label>
-        <select id="Base-Currency">
-          <option>USD</option>
-          <option>BRL</option>
-          <option>EUR</option>
+
+      <div className="converter-form__group">
+        <label htmlFor="sourceCurrency">De: </label>
+        <select
+          id="sourceCurrency"
+          value={sourceCurrency}
+          onChange={(e) => setSourceCurrency(e.target.value)}
+        >
+          <option value="USD">USD</option>
+          <option value="BRL">BRL</option>
+          <option value="EUR">EUR</option>
         </select>
       </div>
-      <button type="button" onClick={handleClick}>⇅</button>
-      <div className="form__row">
-        <label htmlFor="Quote-Currency">Para: </label>
-        <select id="Quote-Currency">
-          <option>USD</option>
-          <option>BRL</option>
-          <option>EUR</option>
+
+      <button
+        type="button"
+        className="converter-form__swap-btn"
+        onClick={handleSwapCurrencies}
+      >
+        ⇅
+      </button>
+
+      <div className="converter-form__group">
+        <label htmlFor="targetCurrency">Para: </label>
+        <select
+          id="targetCurrency"
+          value={targetCurrency}
+          onChange={(e) => setTargetCurrency(e.target.value)}
+        >
+          <option value="USD">USD</option>
+          <option value="BRL">BRL</option>
+          <option value="EUR">EUR</option>
         </select>
       </div>
-      <button>Converter</button>
+
+      <button type="submit" className="converter-form__submit-btn">
+        Converter
+      </button>
     </form>
   );
 }
