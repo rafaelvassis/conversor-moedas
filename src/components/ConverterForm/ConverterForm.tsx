@@ -7,12 +7,18 @@ export default function ConverterForm() {
 
   function handleSwapCurrencies(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
+    const currentSource = sourceCurrency;
+
     setSourceCurrency(targetCurrency);
-    setTargetCurrency(sourceCurrency);
+    setTargetCurrency(currentSource);
   }
 
   function handleConvert(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    if (amount <= 0) {
+      return;
+    }
     console.log(
       `Convertendo ${amount} de ${sourceCurrency} para ${targetCurrency}`,
     );
