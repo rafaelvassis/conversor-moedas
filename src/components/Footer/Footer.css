@@ -1,0 +1,18 @@
+.credits {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+
+  padding: 12px;
+
+  border-radius: 12px;
+
+  background: rgba(255,255,255,.65);
+
+  backdrop-filter: blur(6px);
+}
+
+.credits strong {
+  color: #333;
+}
