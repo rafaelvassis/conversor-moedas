@@ -1,6 +1,6 @@
-export type FrankfurterResponse  = {
-  amount: number;
-  base: string;
+export type ExchangeRateResponse = {
   date: string;
-  rates: Record<string, number>;
+  base: string;
+  quote: string;
+  rate: number;
 };
