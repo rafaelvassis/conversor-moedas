@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { convertCurrency } from "../../services/exchangeApi";
-import type { ExchangeRateResponse } from "../../types/ExchangeRate";
 import "./ConverterForm.css";
 import { currencies } from "../../data/currencies";
 
@@ -13,9 +11,7 @@ type ConverterFormProps = {
   onSourceCurrencyChange: (currency: string) => void;
   onTargetCurrencyChange: (currency: string) => void;
   onSwapCurrencies: () => void;
-
-  setExchangeRate: (r: ExchangeRateResponse | null) => void;
-  setError: (err: string | null) => void;
+  onConvert: () => Promise<void>;
 };
 
 export default function ConverterForm({
@@ -26,42 +22,13 @@ export default function ConverterForm({
   onSourceCurrencyChange,
   onTargetCurrencyChange,
   onSwapCurrencies,
-  setExchangeRate,
-  setError,
+  onConvert,
 }: ConverterFormProps) {
   const [isLoading, setIsLoading] = useState(false);
 
-  async function handleConvert(e: React.SubmitEvent<HTMLFormElement>) {
+  async function handleConvert(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-
-    setError(null);
-    setExchangeRate(null);
-
-    if (amount <= 0) {
-      setError("Informe um valor válido.");
-      return;
-    }
-
-    if (sourceCurrency === targetCurrency) {
-      setError("Selecione moedas diferentes para converter.");
-      return;
-    }
-
-    setIsLoading(true);
-    try {
-      const data: ExchangeRateResponse = await convertCurrency(
-        sourceCurrency,
-        targetCurrency,
-      );
-
-      setExchangeRate(data);
-    } catch (error) {
-      console.error(error);
-      setExchangeRate(null);
-      setError("Não foi possível obter a cotação. Tente novamente.");
-    } finally {
-      setIsLoading(false);
-    }
+    await onConvert();
   }
 
   return (
