@@ -12,14 +12,13 @@ function App() {
     targetCurrency,
     exchangeRate,
     error,
+    isLoading,
 
     handleAmountChange,
     handleSourceCurrencyChange,
     handleTargetCurrencyChange,
     handleSwapCurrencies,
-
-    setExchangeRate,
-    setError,
+    handleConvert,
   } = useCurrencyConverter();
 
   return (
@@ -29,12 +28,12 @@ function App() {
         amount={amount}
         sourceCurrency={sourceCurrency}
         targetCurrency={targetCurrency}
+        isLoading={isLoading}
         onAmountChange={handleAmountChange}
         onSourceCurrencyChange={handleSourceCurrencyChange}
         onTargetCurrencyChange={handleTargetCurrencyChange}
         onSwapCurrencies={handleSwapCurrencies}
-        setExchangeRate={setExchangeRate}
-        setError={setError}
+        onConvert={handleConvert}
       />
       {error && <FeedbackMessage message={error} />}
       <ResultCard

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./ConverterForm.css";
 import { currencies } from "../../data/currencies";
 
@@ -6,12 +5,14 @@ type ConverterFormProps = {
   amount: number;
   sourceCurrency: string;
   targetCurrency: string;
+  isLoading: boolean;
 
   onAmountChange: (value: number) => void;
   onSourceCurrencyChange: (currency: string) => void;
   onTargetCurrencyChange: (currency: string) => void;
   onSwapCurrencies: () => void;
   onConvert: () => Promise<void>;
+  
 };
 
 export default function ConverterForm({
@@ -22,9 +23,9 @@ export default function ConverterForm({
   onSourceCurrencyChange,
   onTargetCurrencyChange,
   onSwapCurrencies,
+  isLoading,
   onConvert,
 }: ConverterFormProps) {
-  const [isLoading, setIsLoading] = useState(false);
 
   async function handleConvert(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
