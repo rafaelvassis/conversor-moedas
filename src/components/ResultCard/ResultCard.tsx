@@ -16,7 +16,15 @@ export default function ResultCard({
   targetCurrency,
   exchangeRate,
 }: ResultCardProps) {
-  const convertedAmount = exchangeRate ? amount * exchangeRate.rate : 0;
+  if (!exchangeRate) {
+    return (
+      <div className="card__container">
+        Nenhuma conversão realizada. Preencha os dados acima e clique em
+        Converter.
+      </div>
+    );
+  }
+  const convertedAmount = amount * exchangeRate.rate;
 
   return (
     <div className="card__container">
@@ -32,9 +40,7 @@ export default function ResultCard({
       </div>
       <div>
         <p className="label__output">Data da consulta</p>
-        <p className="text__output">
-          {exchangeRate ? formatDate(exchangeRate.date) : ""}
-        </p>
+        <p className="text__output">{formatDate(exchangeRate.date)}</p>
       </div>
     </div>
   );
