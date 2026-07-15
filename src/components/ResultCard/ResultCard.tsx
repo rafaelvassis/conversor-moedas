@@ -1,4 +1,6 @@
 import type { ExchangeRateResponse } from "../../types/ExchangeRate";
+import { formatCurrency } from "../../utils/formatCurrency";
+import { formatDate } from "../../utils/formatDate";
 import "./ResultCard.css";
 
 type ResultCardProps = {
@@ -20,19 +22,19 @@ export default function ResultCard({
     <div className="card__container">
       <div>
         <p className="label__output">Valor original</p>
-        <p className="text__output">
-          {sourceCurrency} {amount}
-        </p>
+        <p className="text__output">{formatCurrency(amount, sourceCurrency)}</p>
       </div>
       <div>
         <p className="label__output">Valor Convertido</p>
         <p className="text__output">
-          {targetCurrency} {amount * convertedAmount}
+          {formatCurrency(convertedAmount, targetCurrency)}
         </p>
       </div>
       <div>
         <p className="label__output">Data da consulta</p>
-        <p className="text__output">{exchangeRate?.date}</p>
+        <p className="text__output">
+          {exchangeRate ? formatDate(exchangeRate.date) : ""}
+        </p>
       </div>
     </div>
   );
