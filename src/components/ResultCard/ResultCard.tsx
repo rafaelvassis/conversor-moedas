@@ -35,7 +35,7 @@ export default function ResultCard({
 
       <div>
         <p className="label__output">Taxa de câmbio</p>
-        <p className="text__output">1 {sourceCurrency} = {formatCurrency(exchangeRate.rate, targetCurrency)}</p>
+        <p className="text__output">1 {sourceCurrency} = {exchangeRate.rate.toFixed(2)} {targetCurrency}</p>
       </div>
 
       <div>
