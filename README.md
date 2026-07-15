@@ -1,8 +1,21 @@
 # 💱 Conversor de Moedas
 
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Demo](https://img.shields.io/badge/Demo-Online-success?logo=vercel)](https://conversor-de-moedas-blond.vercel.app/)
+
 Aplicação desenvolvida em React e TypeScript para conversão de moedas em tempo real utilizando a API Frankfurter.
 
 O projeto foi desenvolvido com foco na prática de consumo de APIs REST, gerenciamento de estado, componentização, custom hooks e tratamento de requisições assíncronas.
+
+---
+
+## 🌐 Aplicação Online
+
+Acesse o projeto:
+
+**https://conversor-de-moedas-blond.vercel.app/**
 
 ---
 
@@ -39,7 +52,7 @@ Projeto desenvolvido com foco na prática de fundamentos do React e TypeScript.
 - Gerenciamento de estado
 - Renderização condicional
 - Tipagem com TypeScript
-- Organização em camadas (components, hooks, services, utils)
+- Organização em camadas (`components`, `hooks`, `services`, `utils`)
 - Manipulação de eventos
 - Formatação de dados
 
