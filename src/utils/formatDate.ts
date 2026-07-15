@@ -1,9 +1,5 @@
 export function formatDate(date: string): string {
-  const dateObj = new Date(date);
+  const [year, month, day] = date.split("-");
 
-  const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-  return new Intl.DateTimeFormat("pt-BR", {
-    timeZone: userTimeZone,
-  }).format(dateObj);
+  return `${day}/${month}/${year}`;
 }
