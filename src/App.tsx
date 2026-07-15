@@ -15,16 +15,45 @@ function App() {
   );
   const [error, setError] = useState<string | null>(null);
 
+  function handleAmountChange(value: number) {
+    setAmount(value);
+    setExchangeRate(null);
+    setError(null);
+  }
+
+  function handleSourceCurrencyChange(currency: string) {
+    setSourceCurrency(currency);
+    setExchangeRate(null);
+    setError(null);
+  }
+
+  function handleTargetCurrencyChange(currency: string) {
+    setTargetCurrency(currency);
+    setExchangeRate(null);
+    setError(null);
+  }
+
+  function handleSwapCurrencies() {
+    setSourceCurrency((current) => {
+      setTargetCurrency(current);
+      return targetCurrency;
+    });
+
+    setExchangeRate(null);
+    setError(null);
+  }
+
   return (
     <>
       <Header />
       <ConverterForm
         amount={amount}
-        setAmount={setAmount}
         sourceCurrency={sourceCurrency}
-        setSourceCurrency={setSourceCurrency}
         targetCurrency={targetCurrency}
-        setTargetCurrency={setTargetCurrency}
+        onAmountChange={handleAmountChange}
+        onSourceCurrencyChange={handleSourceCurrencyChange}
+        onTargetCurrencyChange={handleTargetCurrencyChange}
+        onSwapCurrencies={handleSwapCurrencies}
         setExchangeRate={setExchangeRate}
         setError={setError}
       />

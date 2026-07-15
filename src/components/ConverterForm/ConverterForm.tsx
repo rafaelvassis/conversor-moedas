@@ -8,32 +8,28 @@ type ConverterFormProps = {
   amount: number;
   sourceCurrency: string;
   targetCurrency: string;
-  setAmount: (a: number) => void;
-  setSourceCurrency: (s: string) => void;
-  setTargetCurrency: (s: string) => void;
+
+  onAmountChange: (value: number) => void;
+  onSourceCurrencyChange: (currency: string) => void;
+  onTargetCurrencyChange: (currency: string) => void;
+  onSwapCurrencies: () => void;
+
   setExchangeRate: (r: ExchangeRateResponse | null) => void;
   setError: (err: string | null) => void;
 };
 
 export default function ConverterForm({
   amount,
-  setAmount,
   sourceCurrency,
-  setSourceCurrency,
   targetCurrency,
-  setTargetCurrency,
+  onAmountChange,
+  onSourceCurrencyChange,
+  onTargetCurrencyChange,
+  onSwapCurrencies,
   setExchangeRate,
   setError,
 }: ConverterFormProps) {
   const [isLoading, setIsLoading] = useState(false);
-
-  function handleSwapCurrencies(e: React.MouseEvent<HTMLButtonElement>) {
-    e.preventDefault();
-    const currentSource = sourceCurrency;
-
-    setSourceCurrency(targetCurrency);
-    setTargetCurrency(currentSource);
-  }
 
   async function handleConvert(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -80,7 +76,7 @@ export default function ConverterForm({
           id="sourceAmount"
           name="sourceAmount"
           value={amount}
-          onChange={(e) => setAmount(Number(e.target.value))}
+          onChange={(e) => onAmountChange(Number(e.target.value))}
         />
       </div>
 
@@ -90,7 +86,7 @@ export default function ConverterForm({
           disabled={isLoading}
           id="sourceCurrency"
           value={sourceCurrency}
-          onChange={(e) => setSourceCurrency(e.target.value)}
+          onChange={(e) => onSourceCurrencyChange(e.target.value)}
         >
           {currencies.map(({ code, name }) => (
             <option key={code} value={code}>
@@ -104,7 +100,7 @@ export default function ConverterForm({
         disabled={isLoading}
         type="button"
         className="converter-form__swap-btn"
-        onClick={handleSwapCurrencies}
+        onClick={onSwapCurrencies}
       >
         ⇅
       </button>
@@ -115,7 +111,7 @@ export default function ConverterForm({
           disabled={isLoading}
           id="targetCurrency"
           value={targetCurrency}
-          onChange={(e) => setTargetCurrency(e.target.value)}
+          onChange={(e) => onTargetCurrencyChange(e.target.value)}
         >
           {currencies.map(({ code, name }) => (
             <option key={code} value={code}>
