@@ -18,7 +18,11 @@ export function useCurrencyConverter() {
     async function loadCurrencies() {
       try {
         const data = await getCurrencies();
-        setCurrencies(data);
+        const sortedCurrencies = [...data].sort((a, b) =>
+          a.name.localeCompare(b.name),
+        );
+
+        setCurrencies(sortedCurrencies);
       } catch (error) {
         console.error(error);
         setError("Não foi possível carregar a lista de moedas.");
