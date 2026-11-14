@@ -40,7 +40,7 @@ function App() {
       />
       {error && <FeedbackMessage message={error} />}
       <ResultCard
-        amount={amount}
+        amount={Number(amount)}
         sourceCurrency={sourceCurrency}
         targetCurrency={targetCurrency}
         exchangeRate={exchangeRate}

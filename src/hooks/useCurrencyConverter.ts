@@ -4,7 +4,7 @@ import type { Currency } from "../types/Currency";
 import { convertCurrency, getCurrencies } from "../services/exchangeApi";
 
 export function useCurrencyConverter() {
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState("");
   const [sourceCurrency, setSourceCurrency] = useState("USD");
   const [targetCurrency, setTargetCurrency] = useState("BRL");
   const [exchangeRate, setExchangeRate] = useState<ExchangeRateResponse | null>(
@@ -32,7 +32,7 @@ export function useCurrencyConverter() {
     loadCurrencies();
   }, [setError]);
 
-  function handleAmountChange(value: number) {
+  function handleAmountChange(value: string) {
     setAmount(value);
     setExchangeRate(null);
     setError(null);
@@ -64,7 +64,7 @@ export function useCurrencyConverter() {
     setError(null);
     setExchangeRate(null);
 
-    if (amount <= 0) {
+    if (Number(amount) <= 0) {
       setError("Informe um valor válido.");
       return;
     }

@@ -2,13 +2,13 @@ import type { Currency } from "../../types/Currency";
 import "./ConverterForm.css";
 
 type ConverterFormProps = {
-  amount: number;
+  amount: string;
   sourceCurrency: string;
   targetCurrency: string;
   isLoading: boolean;
   currencies: Currency[];
 
-  onAmountChange: (value: number) => void;
+  onAmountChange: (value: string) => void;
   onSourceCurrencyChange: (currency: string) => void;
   onTargetCurrencyChange: (currency: string) => void;
   onSwapCurrencies: () => void;
@@ -44,7 +44,7 @@ export default function ConverterForm({
           id="sourceAmount"
           name="sourceAmount"
           value={amount}
-          onChange={(e) => onAmountChange(Number(e.target.value))}
+          onChange={(e) => onAmountChange(e.target.value)}
         />
       </div>
 
